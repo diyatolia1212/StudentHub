@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <!-- for responsive website -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notification" class="notification">
+        <span>🔔 Welcome to StudentHub! New events are available.</span> 
+        <!-- inline container used to group and mark up specific parts of text or content -->
+        <button id="closeNotification" aria-label="Close notification">✖</button>
+    </div>
+    
+    <header>
+        <div class="header-content">
+            <img src="C:\Users\diyat\OneDrive\Pictures\Screenshots\Screenshot 2026-08-27 231600.png"
+                 alt="StudentHub Logo"
+                 width="70">
+            <h1>StudentHub</h1>
+            <button id="menuBtn"
+                    class="menu-btn"
+                    aria-label="Open navigation menu">
+                ☰
+            </button>
+        </div>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="faq.html">FAQ</a>
+            <a href="events.html">Events</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>Welcome to StudentHub</h2>
+            <p>
+                Your one-stop student portal for events,
+                information and campus activities.
+            </p>
+             <!-- //button ni theme mata -->
+             <button id="themeBtn"> 
+                🌙 Dark Mode
+            </button>
+            <button id="openModal">
+                📢 View Notice
+            </button>
+        </section>
+        <section class="features">
+            <h2>StudentHub Features</h2>
+            <div class="feature-container">
+                <article>
+                    <h3>📚 Student Resources</h3>
+                    <p>
+                        Access useful academic and student resources.
+                    </p>
+                </article>
+                <article>
+                    <h3>🎉 Events</h3>
+                    <p>
+                        Stay updated with upcoming college events.
+                    </p>
+                </article>
+                <article>
+                    <h3>❓ FAQ</h3>
+                    <p>
+                        Find answers to frequently asked questions.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <div id="modal"
+         class="modal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+            <button id="closeModal"
+                    class="close-modal"
+                    aria-label="Close notice">
+                ✖
+            </button>
+            <h2 id="modalTitle">
+                StudentHub Notice
+            </h2>
+            <p>
+                Welcome to StudentHub!
+                Check the Events page for upcoming
+                student activities and programs.
+            </p>
+        </div>
+    </div>
+    <footer>
+        <p>
+            &copy; 2026 StudentHub. All Rights Reserved.
+        </p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
