@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #eaf3ff;
+        }
+        form {
+            background-color: white;
+            width: 400px;
+            margin: 30px auto;
+            padding: 25px;
+            border: 2px solid #1976d2;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        button {
+            background-color: #1976d2;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+    <h1>StudentHub</h1>
+    <h2>Student Registration</h2>
+    <label>Name:</label><br>
+    <input type="text" id="name" placeholder="Enter name">
+    <p id="nameError" class="error"></p>
+    <label>Email:</label><br>
+    <input type="email" id="email" placeholder="Enter email">
+    <p id="emailError" class="error"></p>
+    <label>Mobile:</label><br>
+    <input type="tel" id="mobile" placeholder="10 digit number">
+    <p id="mobileError" class="error"></p>
+    <label>Password:</label><br>
+    <input type="password" id="password" placeholder="Enter password">
+    <p id="passwordError" class="error"></p>
+    <label>Confirm Password:</label><br>
+    <input type="password" id="confirm" placeholder="Confirm password">
+    <p id="confirmError" class="error"></p>
+    <label>Course:</label><br>
+    <select id="course">
+        <option value="">Select Course</option>
+        <option>B.Tech</option>
+        <option>BCA</option>
+        <option>BBA</option>
+        <option>B.Com</option>
+    </select>
+    <p id="courseError" class="error"></p>
+    <label>Year:</label><br>
+    <input type="radio" name="year">1st
+    <input type="radio" name="year">2nd
+    <input type="radio" name="year">3rd
+    <input type="radio" name="year">4th
+    <p id="yearError" class="error"></p>
+    <label>Gender:</label><br>
+    <input type="radio" name="gender">Male
+    <input type="radio" name="gender">Female
+    <input type="radio" name="gender">Other
+    <p id="genderError" class="error"></p>
+    <input type="checkbox" id="terms">
+    <label for="terms">I accept Terms and Conditions</label>
+    <p id="termsError" class="error"></p>
+    <button type="submit">Register</button>
+    <button type="reset">Reset</button>
+    <h3 id="success"></h3>
+</form>
+<script>
+function validateForm() {
+    var valid = true;
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var mobile = document.getElementById("mobile").value;
+    var password = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm").value;
+    var course = document.getElementById("course").value;
+    var nameReg = /^[A-Za-z ]+$/;
+    var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var mobileReg = /^[6-9][0-9]{9}$/;
+    var passReg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
+    document.querySelectorAll(".error").forEach(function(x) {
+        x.innerHTML = "";
+    });
+    if (!nameReg.test(name)) {
+        document.getElementById("nameError").innerHTML =
+            "Enter a valid name.";
+        valid = false;
+    }
+    if (!emailReg.test(email)) {
+        document.getElementById("emailError").innerHTML =
+            "Enter a valid email.";
+        valid = false;
+    }
+    if (!mobileReg.test(mobile)) {
+        document.getElementById("mobileError").innerHTML =
+            "Enter a valid mobile number.";
+        valid = false;
+    }
+    if (!passReg.test(password)) {
+        document.getElementById("passwordError").innerHTML =
+            "Password needs 6 characters, uppercase, lowercase and number.";
+        valid = false;
+    }
+    if (password != confirm) {
+        document.getElementById("confirmError").innerHTML =
+            "Passwords do not match.";
+        valid = false;
+    }
+    if (course == "") {
+        document.getElementById("courseError").innerHTML =
+            "Select a course.";
+        valid = false;
+    }
+    if (!document.querySelector('input[name="year"]:checked')) {
+        document.getElementById("yearError").innerHTML =
+            "Select your year.";
+        valid = false;
+    }
+    if (!document.querySelector('input[name="gender"]:checked')) {
+        document.getElementById("genderError").innerHTML =
+            "Select your gender.";
+        valid = false;
+    }
+    if (!document.getElementById("terms").checked) {
+        document.getElementById("termsError").innerHTML =
+            "Accept the terms.";
+        valid = false;
+    }
+    if (valid)
+        document.getElementById("success").innerHTML =
+            "Registration Successful!";
+    return false;
+}
+</script>
+</body>
+</html>
