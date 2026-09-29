@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>StudentHub Events</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #eaf4ff;
+}
+
+header {
+    background: #1565c0;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    width: 90%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #90caf9;
+    border-radius: 5px;
+}
+
+#events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    width: 220px;
+    padding: 15px;
+    text-align: left;
+    border-left: 5px solid #1565c0;
+    border-radius: 7px;
+}
+
+.card h3 {
+    color: #1565c0;
+}
+
+button {
+    background: #1565c0;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+footer {
+    background: #1565c0;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    margin-top: 30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>StudentHub</h1>
+    <p>College Events</p>
+</header>
+
+<main>
+
+<input type="text" id="search" placeholder="Search event">
+
+<select id="filter">
+    <option value="">All Locations</option>
+    <option value="Lab">Lab</option>
+    <option value="Ground">Ground</option>
+    <option value="Auditorium">Auditorium</option>
+</select>
+
+<select id="sort">
+    <option value="">Sort By</option>
+    <option value="name">Name</option>
+    <option value="date">Date</option>
+</select>
+
+<p id="msg">Loading...</p>
+
+<div id="events"></div>
+
+<div id="pages"></div>
+
+</main>
+
+<footer>
+    student copyright &copy; 2026
+</footer>
+
+
+<script>
+
+let events = [];
+let page = 1;
+
+fetch("events.json")
+.then(response => response.json())
+.then(data => {
+
+    events = data;
+
+    document.getElementById("msg").innerHTML = "";
+
+    display();
+
+})
+.catch(error => {
+
+    document.getElementById("msg").innerHTML =
+        "Error! Please check events.json";
+
+});
+
+
+function display() {
+
+    let search = document.getElementById("search")
+        .value.toLowerCase();
+
+    let filter = document.getElementById("filter").value;
+
+    let sort = document.getElementById("sort").value;
+
+
+    let result = events.filter(function(e) {
+
+        return e.name.toLowerCase().includes(search)
+        &&
+        (filter == "" || e.location == filter);
+
+    });
+
+
+    if (sort == "name") {
+
+        result.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+
+    }
+
+    if (sort == "date") {
+
+        result.sort(function(a, b) {
+            return a.date.localeCompare(b.date);
+        });
+
+    }
+
+
+    let start = (page - 1) * 6;
+
+    let show = result.slice(start, start + 6);
+
+
+    document.getElementById("events").innerHTML = "";
+
+
+    show.forEach(function(e) {
+
+        document.getElementById("events").innerHTML += `
+
+            <div class="card">
+
+                <h3>${e.name}</h3>
+
+                <p>Date: ${e.date}</p>
+
+                <p>Location: ${e.location}</p>
+
+            </div>
+
+        `;
+
+    });
+
+
+    if (result.length == 0) {
+
+        document.getElementById("msg").innerHTML =
+            "No events found";
+
+    } else {
+
+        document.getElementById("msg").innerHTML = "";
+
+    }
+
+
+    let total = Math.ceil(result.length / 6);
+
+    document.getElementById("pages").innerHTML = "";
+
+
+    for (let i = 1; i <= total; i++) {
+
+        document.getElementById("pages").innerHTML +=
+
+            `<button onclick="page=${i}; display()">
+                ${i}
+            </button>`;
+
+    }
+
+}
+
+
+document.getElementById("search")
+    .addEventListener("input", function() {
+
+        page = 1;
+        display();
+
+    });
+
+
+document.getElementById("filter")
+    .addEventListener("change", function() {
+
+        page = 1;
+        display();
+
+    });
+
+
+document.getElementById("sort")
+    .addEventListener("change", function() {
+
+        page = 1;
+        display();
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Tech Fest",
+        "date": "2026-10-05",
+        "location": "Auditorium"
+    },
+    {
+        "name": "Sports Day",
+        "date": "2026-10-10",
+        "location": "Ground"
+    },
+    {
+        "name": "Coding Competition",
+        "date": "2026-10-15",
+        "location": "Lab"
+    },
+    {
+        "name": "Cultural Fest",
+        "date": "2026-10-20",
+        "location": "Ground"
+    },
+    {
+        "name": "Robotics Workshop",
+        "date": "2026-10-25",
+        "location": "Lab"
+    },
+    {
+        "name": "Web Workshop",
+        "date": "2026-11-01",
+        "location": "Lab"
+    },
+    {
+        "name": "Hackathon",
+        "date": "2026-11-10",
+        "location": "Lab"
+    },
+    {
+        "name": "Dance Competition",
+        "date": "2026-11-15",
+        "location": "Auditorium"
+    },
+    {
+        "name": "Music Competition",
+        "date": "2026-11-20",
+        "location": "Auditorium"
+    },
+    {
+        "name": "AI Workshop",
+        "date": "2026-11-25",
+        "location": "Lab"
+    }
+]
